@@ -100,14 +100,14 @@
 		__net_ppp_proto_end = .;
 	} GROUP_LINK_IN(ROMABLE_REGION)
 #endif
-
+#if 0//for esp32
 	SECTION_DATA_PROLOGUE(_bt_channels_area,,SUBALIGN(4))
 	{
 		_bt_l2cap_fixed_chan_list_start = .;
 		KEEP(*(SORT_BY_NAME("._bt_l2cap_fixed_chan.static.*")))
 		_bt_l2cap_fixed_chan_list_end = .;
 	} GROUP_LINK_IN(ROMABLE_REGION)
-
+#endif
 #if defined(CONFIG_BT_BREDR)
 	SECTION_DATA_PROLOGUE(_bt_br_channels_area,,SUBALIGN(4))
 	{

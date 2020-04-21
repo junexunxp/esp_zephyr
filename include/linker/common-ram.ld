@@ -196,6 +196,15 @@
 	} GROUP_DATA_LINK_IN(RAMABLE_REGION, ROMABLE_REGION)
 #endif /* CONFIG_USB_DEVICE_BOS */
 
+#if 1//for esp32
+	SECTION_DATA_PROLOGUE(_bt_channels_area,,SUBALIGN(4))
+	{
+		_bt_l2cap_fixed_chan_list_start = .;
+		KEEP(*(SORT_BY_NAME("._bt_l2cap_fixed_chan.static.*")))
+		_bt_l2cap_fixed_chan_list_end = .;
+	}  GROUP_DATA_LINK_IN(RAMABLE_REGION, ROMABLE_REGION)
+#endif
+
 #ifdef CONFIG_USERSPACE
 	_static_kernel_objects_end = .;
 #endif

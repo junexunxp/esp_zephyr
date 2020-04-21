@@ -355,18 +355,24 @@ static void uart_esp32_irq_tx_disable(struct device *dev)
 
 static int uart_esp32_irq_tx_ready(struct device *dev)
 {
+	//if interrupt dsiabled should return 0
+	if(!(DEV_BASE(dev)->int_ena & UART_TXFIFO_EMPTY_INT_ENA)){
+		return 0;
+	}
 	return (UART_TXFIFO_COUNT(DEV_BASE(dev)->status) < UART_FIFO_LIMIT);
 }
 
 static void uart_esp32_irq_rx_enable(struct device *dev)
 {
-	DEV_BASE(dev)->int_clr |= UART_RXFIFO_FULL_INT_ENA;
-	DEV_BASE(dev)->int_ena |= UART_RXFIFO_FULL_INT_ENA;
+	//add fifo tout
+	DEV_BASE(dev)->int_clr |= (UART_RXFIFO_FULL_INT_ENA|UART_RXFIFO_TOUT_INT_ENA);
+	DEV_BASE(dev)->int_ena |= (UART_RXFIFO_FULL_INT_ENA|UART_RXFIFO_TOUT_INT_ENA);
 }
 
 static void uart_esp32_irq_rx_disable(struct device *dev)
 {
-	DEV_BASE(dev)->int_ena &= ~(UART_RXFIFO_FULL_INT_ENA);
+	//clear fifo timout
+	DEV_BASE(dev)->int_ena &= ~(UART_RXFIFO_FULL_INT_ENA|UART_RXFIFO_TOUT_INT_ENA);
 }
 
 static int uart_esp32_irq_tx_complete(struct device *dev)
@@ -400,9 +406,9 @@ static int uart_esp32_irq_is_pending(struct device *dev)
 
 static int uart_esp32_irq_update(struct device *dev)
 {
+	
 	DEV_BASE(dev)->int_clr |= UART_RXFIFO_FULL_INT_ENA;
 	DEV_BASE(dev)->int_clr |= UART_TXFIFO_EMPTY_INT_ENA;
-
 	return 1;
 }
 
@@ -418,7 +424,6 @@ void uart_esp32_isr(void *arg)
 {
 	struct device *dev = arg;
 	struct uart_esp32_data *data = DEV_DATA(dev);
-
 	/* Verify if the callback has been registered */
 	if (data->irq_cb) {
 		data->irq_cb(data->irq_cb_data);

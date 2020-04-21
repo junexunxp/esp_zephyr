@@ -312,7 +312,6 @@ static bool l2cap_chan_add(struct bt_conn *conn, struct bt_l2cap_chan *chan,
 		BT_ERR("Unable to allocate L2CAP CID");
 		return false;
 	}
-
 	k_delayed_work_init(&chan->rtx_work, l2cap_rtx_timeout);
 	atomic_clear(chan->status);
 

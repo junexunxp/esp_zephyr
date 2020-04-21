@@ -1976,6 +1976,7 @@ static int bt_att_recv(struct bt_l2cap_chan *chan, struct net_buf *buf)
 	if (IS_ENABLED(CONFIG_BT_ATT_ENFORCE_FLOW)) {
 		if (handler->type == ATT_REQUEST &&
 		    atomic_test_and_set_bit(att->flags, ATT_PENDING_RSP)) {
+				printk("opcode 0x%2x\n",hdr->code);
 			BT_WARN("Ignoring unexpected request");
 			return 0;
 		} else if (handler->type == ATT_INDICATION &&

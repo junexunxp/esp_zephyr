@@ -356,18 +356,17 @@ int bt_hci_cmd_send_sync(u16_t opcode, struct net_buf *buf,
 	BT_DBG("buf %p opcode 0x%04x len %u", buf, opcode, buf->len);
 
 	k_sem_init(&sync_sem, 0, 1);
+	
 	cmd(buf)->sync = &sync_sem;
-
+	
 	/* Make sure the buffer stays around until the command completes */
 	net_buf_ref(buf);
 
 	net_buf_put(&bt_dev.cmd_tx_queue, buf);
-
 	err = k_sem_take(&sync_sem, HCI_CMD_TIMEOUT);
 	__ASSERT(err == 0, "k_sem_take failed with err %d", err);
 
 	BT_DBG("opcode 0x%04x status 0x%02x", opcode, cmd(buf)->status);
-
 	if (cmd(buf)->status) {
 		switch (cmd(buf)->status) {
 		case BT_HCI_ERR_CONN_LIMIT_EXCEEDED:
@@ -6187,7 +6186,6 @@ int bt_recv_prio(struct net_buf *buf)
 	handle_event(hdr->evt, buf, prio_events, ARRAY_SIZE(prio_events));
 
 	net_buf_unref(buf);
-
 	return 0;
 }
 

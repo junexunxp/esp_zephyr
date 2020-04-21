@@ -392,7 +392,6 @@ static inline void process_rx(void)
 static void bt_uart_isr(struct device *unused)
 {
 	ARG_UNUSED(unused);
-
 	while (uart_irq_update(h4_dev) && uart_irq_is_pending(h4_dev)) {
 		if (uart_irq_tx_ready(h4_dev)) {
 			process_tx();
@@ -407,10 +406,8 @@ static void bt_uart_isr(struct device *unused)
 static int h4_send(struct net_buf *buf)
 {
 	BT_DBG("buf %p type %u len %u", buf, bt_buf_get_type(buf), buf->len);
-
 	net_buf_put(&tx.fifo, buf);
 	uart_irq_tx_enable(h4_dev);
-
 	return 0;
 }
 

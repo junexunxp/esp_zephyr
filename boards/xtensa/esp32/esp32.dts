@@ -41,12 +41,12 @@
 };
 
 &uart1 {
-	current-speed = <115200>;
-	tx-pin = <10>;
-	rx-pin = <9>;
-	rts-pin = <11>;
-	cts-pin = <6>;
-	hw-flow-control;
+	status = "okay";
+	current-speed = <230400>;
+	tx-pin = <5>;
+	rx-pin = <18>;
+	rts-pin = <19>;
+	cts-pin = <23>;
 };
 
 &uart2 {

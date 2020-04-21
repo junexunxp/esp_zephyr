@@ -355,6 +355,9 @@ static void uart_esp32_irq_tx_disable(struct device *dev)
 
 static int uart_esp32_irq_tx_ready(struct device *dev)
 {
+	if(!(DEV_BASE(dev)->int_ena & UART_TXFIFO_EMPTY_INT_ENA)){
+		return 0;
+		}
 	return (UART_TXFIFO_COUNT(DEV_BASE(dev)->status) < UART_FIFO_LIMIT);
 }
 

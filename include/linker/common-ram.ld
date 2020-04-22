@@ -203,7 +203,7 @@
 	} GROUP_DATA_LINK_IN(RAMABLE_REGION, ROMABLE_REGION)
 #endif /* CONFIG_USB_DEVICE_BOS */
 
-#if 1//for esp32
+#ifdef CONFIG_ESP32_BLUETOOTH_USED//for esp32
 	SECTION_DATA_PROLOGUE(_bt_channels_area,,SUBALIGN(4))
 	{
 		_bt_l2cap_fixed_chan_list_start = .;

@@ -100,7 +100,7 @@
 		__net_ppp_proto_end = .;
 	} GROUP_LINK_IN(ROMABLE_REGION)
 #endif
-#if 0//for esp32
+#ifndef CONFIG_ESP32_BLUETOOTH_USED//for esp32
 	SECTION_DATA_PROLOGUE(_bt_channels_area,,SUBALIGN(4))
 	{
 		_bt_l2cap_fixed_chan_list_start = .;

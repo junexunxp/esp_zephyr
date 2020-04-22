@@ -19,5 +19,8 @@ endif
 if BT_CUSTOM
 # Insert here any custom (non-HCI) offload drives
 endif
-
+config ESP32_BLUETOOTH_USED
+	bool "Use esp32 to run zephyr host"
+	help
+	  This option allows to run zephyr host on ESP32.
 endmenu

@@ -177,7 +177,12 @@ do {                                                                    \
 #endif
 #define __used		__attribute__((__used__))
 #ifndef __deprecated
+#if(CONFIG_SOC_ESP32C)
+//The tollchain for esp33c doesn't support __attribute__((deprecated)) now, will remove it when toolchain update to v8.x
+#define __deprecated
+#else
 #define __deprecated	__attribute__((deprecated))
+#endif
 #endif
 #define ARG_UNUSED(x) (void)(x)
 

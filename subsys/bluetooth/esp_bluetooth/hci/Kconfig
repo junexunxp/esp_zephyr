@@ -1,0 +1,10 @@
+# Bluetooth common configuration options
+
+# Copyright (c) 2017 Nordic Semiconductor ASA
+# Copyright (c) 2016 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+config ESP32_VHCI_CONTROLLER
+	bool "Use esp32 vhci controller"
+	help
+	  This option allows to run esp32 blutooth controller.
+

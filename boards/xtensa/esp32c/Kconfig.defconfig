@@ -1,0 +1,12 @@
+# ESP32C board configuration
+
+# Copyright (c) 2020 Espressif Corporation
+# SPDX-License-Identifier: Apache-2.0
+if BOARD_ESP32C
+config BOARD
+	default "esp32c"
+	depends on BOARD_ESP32C
+
+config ENTROPY_ESP32C_RNG
+	default y if ENTROPY_GENERATOR
+endif

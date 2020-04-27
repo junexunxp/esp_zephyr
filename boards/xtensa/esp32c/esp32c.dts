@@ -1,0 +1,76 @@
+/*
+ * Copyright (c) 2020 Espressif Corporation.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/dts-v1/;
+
+#include <espressif/esp32c.dtsi>
+
+/ {
+	model = "esp32c";
+	compatible = "espressif,esp32c";
+
+	aliases {
+		uart-0 = &uart0;
+		i2c-0 = &i2c0;
+	};
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+	};
+};
+
+&cpu0 {
+	clock-frequency = <80000000>;
+};
+
+&cpu1 {
+	clock-frequency = <80000000>;
+};
+
+&uart0 {
+	status = "okay";
+	current-speed = <115200>;
+	tx-pin = <1>;
+	rx-pin = <3>;
+	rts-pin = <22>;
+	cts-pin = <19>;
+};
+
+&uart1 {
+	status = "okay";
+	current-speed = <230400>;
+	tx-pin = <5>;
+	rx-pin = <18>;
+	rts-pin = <19>;
+	cts-pin = <23>;
+};
+
+&uart2 {
+	current-speed = <115200>;
+	tx-pin = <17>;
+	rx-pin = <16>;
+	rts-pin = <7>;
+	cts-pin = <8>;
+	hw-flow-control;
+};
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>;
+	sda-pin = <21>;
+	scl-pin = <22>;
+};
+
+&i2c1 {
+	clock-frequency = <I2C_BITRATE_FAST>;
+	sda-pin = <18>;
+	scl-pin = <5>;
+};
+
+&trng0 {
+	status = "okay";
+};

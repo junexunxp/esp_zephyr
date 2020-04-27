@@ -1,0 +1,25 @@
+# Copyright (c) 2019 Mohamed ElShahawi (ExtremeGTX@hotmail.com)
+# SPDX-License-Identifier: Apache-2.0
+
+description: ESP32C I2C
+
+compatible: "espressif,esp32c-i2c"
+
+include: i2c-controller.yaml
+
+properties:
+    reg:
+      required: true
+
+    interrupts:
+      required: false
+
+    sda-pin:
+      type: int
+      description: SDA pin
+      required: true
+
+    scl-pin:
+      type: int
+      description: SCL pin
+      required: true

@@ -69,6 +69,11 @@ config BT_NO_DRIVER
 	  This is intended for unit tests where no internal driver
 	  should be selected.
 
+config ESP32_VHCI
+	bool "Use ESP32 VHCI controller"
+	help
+	  This is intended for ESP32 module.
+	  
 endchoice
 
 # Workaround for not being able to have commas in macro arguments

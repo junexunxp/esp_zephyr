@@ -11,9 +11,13 @@
 # options are only applicable if controller support hasn't been enabled.
 menu "Bluetooth Drivers"
 	depends on BT && !BT_CTLR
-
+	
 if BT_HCI
 source "drivers/bluetooth/hci/Kconfig"
+endif
+
+if ESP32_VHCI
+source "subsys/bluetooth/esp_bluetooth/hci/Kconfig"
 endif
 
 if BT_CUSTOM

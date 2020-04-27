@@ -16,6 +16,7 @@ from runners import bossac
 from runners import dediprog
 from runners import dfu
 from runners import esp32
+from runners import esp32c
 from runners import hifive1
 from runners import intel_s1000
 from runners import jlink

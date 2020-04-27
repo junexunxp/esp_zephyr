@@ -53,6 +53,8 @@ source "drivers/pwm/Kconfig.imx"
 
 source "drivers/pwm/Kconfig.esp32"
 
+source "drivers/pwm/Kconfig.esp32c"
+
 source "drivers/pwm/Kconfig.sam"
 
 source "drivers/pwm/Kconfig.mcux"

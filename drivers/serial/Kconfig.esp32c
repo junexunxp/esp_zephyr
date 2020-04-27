@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config UART_ESP32C
+	bool "ESP32C UART driver"
+	default y
+	select SERIAL_HAS_DRIVER
+	select SERIAL_SUPPORT_INTERRUPT
+	select GPIO_ESP32C
+	depends on SOC_ESP32C
+	help
+	  Enable the ESP32C UART using ROM routines.

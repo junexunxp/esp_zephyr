@@ -1,0 +1,10 @@
+# ESP32 Pin mux configuration options
+
+# Copyright (c) 2017 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+config PINMUX_ESP32C
+	bool "ESP32C Pin multiplexer driver"
+	depends on SOC_ESP32C
+	help
+	  Enable driver for ESP32C Pin multiplexer.

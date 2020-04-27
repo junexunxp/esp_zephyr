@@ -75,6 +75,14 @@ config HWINFO_ESP32
 	help
 	  Enable ESP32 hwinfo driver.
 
+config HWINFO_ESP32C
+	bool "ESP32C device ID"
+	default y
+	depends on SOC_ESP32C
+	select HWINFO_HAS_DRIVER
+	help
+	  Enable ESP32C hwinfo driver.
+
 config HWINFO_LITEX
 	bool "LiteX device ID"
 	default y
